@@ -18,13 +18,48 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <CudaCompile Include="kernel.cu" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="data.h">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="pgm.h">
+    </ClInclude>
+    <ClInclude Include="iris_loader.h">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
+    </ClInclude>
+    <ClInclude Include="mnist_loader.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="pgm.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_timer.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="string_util.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\activations.h">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\fully_connected_layer.h">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\fully_connected_neuron.h">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\layer.h">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\softmax_layer.h">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="iris_loader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="mnist_loader.cpp">
@@ -42,37 +77,5 @@
     <ClCompile Include="dnn\softmax_layer.cpp">
       <Filter>ソース ファイル\DNN</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="iris_loader.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="string_util.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="data.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="mnist_loader.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="dnn\activations.h">
-      <Filter>ソース ファイル\DNN</Filter>
-    </ClInclude>
-    <ClInclude Include="dnn\layer.h">
-      <Filter>ソース ファイル\DNN</Filter>
-    </ClInclude>
-    <ClInclude Include="dnn\fully_connected_layer.h">
-      <Filter>ソース ファイル\DNN</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_timer.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="dnn\fully_connected_neuron.h">
-      <Filter>ソース ファイル\DNN</Filter>
-    </ClInclude>
-    <ClInclude Include="dnn\softmax_layer.h">
-      <Filter>ソース ファイル\DNN</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
