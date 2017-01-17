@@ -3,3 +3,6 @@ Release/
 *.idx*-ubyte
 *.VC.db
 .vs/
+DeepLearning_1_BP_Learning/DeepLearning_1_BP_Learning.VC.VC.opendb
+DeepLearning_1_BP_Learning/DeepLearning_1_BP_Learning.vcxproj.user
+DeepLearning_1_BP_Learning/iris_data_dummy.csv

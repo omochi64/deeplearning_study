@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\DNN">
+      <UniqueIdentifier>{eb51140d-16f1-445f-a7a0-0e079cc9e67f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -30,6 +33,15 @@
     <ClCompile Include="string_util.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="dnn\fully_connected_layer.cpp">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClCompile>
+    <ClCompile Include="dnn\fully_connected_neuron.cpp">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClCompile>
+    <ClCompile Include="dnn\softmax_layer.cpp">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="iris_loader.h">
@@ -43,6 +55,24 @@
     </ClInclude>
     <ClInclude Include="mnist_loader.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\activations.h">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\layer.h">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\fully_connected_layer.h">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_timer.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\fully_connected_neuron.h">
+      <Filter>ソース ファイル\DNN</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\softmax_layer.h">
+      <Filter>ソース ファイル\DNN</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

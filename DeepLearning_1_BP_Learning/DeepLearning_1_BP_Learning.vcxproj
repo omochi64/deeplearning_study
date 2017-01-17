@@ -80,6 +80,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -148,6 +149,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dnn\fully_connected_layer.cpp" />
+    <ClCompile Include="dnn\fully_connected_neuron.cpp" />
+    <ClCompile Include="dnn\softmax_layer.cpp" />
     <ClCompile Include="iris_loader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mnist_loader.cpp" />
@@ -156,8 +160,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data.h" />
+    <ClInclude Include="dnn\activations.h" />
+    <ClInclude Include="dnn\fully_connected_layer.h" />
+    <ClInclude Include="dnn\fully_connected_neuron.h" />
+    <ClInclude Include="dnn\layer.h" />
+    <ClInclude Include="dnn\softmax_layer.h" />
     <ClInclude Include="iris_loader.h" />
     <ClInclude Include="mnist_loader.h" />
+    <ClInclude Include="simple_timer.h" />
     <ClInclude Include="string_util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
