@@ -27,15 +27,21 @@ void SoftmaxLayer::activation(const std::vector<std::vector<float> > &in, std::v
 		for (auto i = 0; i < in_i.size(); i++)
 		{
 			float v = in_i[i];
+
+#ifdef _DEBUG
 			if (std::isnan(v) || std::isinf(v))
 			{
 				std::cout << "data[" << data_i << "][" << i << "] is nan!" << std::endl;
 			}
+#endif
 			auto exp_v = std::exp(v-max_v);
+
+#ifdef _DEBUG
 			if (std::isnan(exp_v) || std::isinf(exp_v))
 			{
 				std::cout << "exp(data[" << data_i << "][" << i << "] = " << v- max_v << ") is nan!" << std::endl;
 			}
+#endif
 			sum_of_exp += exp_v;
 			o_out[data_i][i] = exp_v;
 		}
@@ -43,12 +49,15 @@ void SoftmaxLayer::activation(const std::vector<std::vector<float> > &in, std::v
 		{
 			auto prev = o_out[data_i][i];
 			o_out[data_i][i] /= sum_of_exp;
+
+#ifdef _DEBUG
 			if (std::isnan(o_out[data_i][i]) || std::isinf(o_out[data_i][i]))
 			{
 				std::cout << "o_out[" << data_i << "][" << i << "] = " << o_out[data_i][i] << " = " << prev << "/" << sum_of_exp << " is nan!" << std::endl;
 				std::cout << "input value = " << orig[i] << ", max_v = " << max_v << std::endl;
 			}
 			//std::cout << o_out[data_i][i] << ",";
+#endif // _DEBUG
 		}
 		//std::cout << std::endl;
 	}
@@ -87,10 +96,12 @@ float SoftmaxLayer::calc_loss(const std::vector<float> &result, size_t gt_index)
 {
 	auto value = result[gt_index];
 	auto loss = -std::log(value); // gt_indexà»äOÇÃçÄÇÕ0Ç…Ç»ÇÈ
+#ifdef _DEBUG
 	if (std::isnan(loss) || std::isinf(loss))
 	{
 		std::cerr << "loss is nan or inf: orig=" << value << ",v=" << loss << std::endl;
 	}
+#endif
 	return loss;
 }
 

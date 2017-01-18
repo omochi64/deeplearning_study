@@ -66,6 +66,11 @@ void cuda_fc_calc_weights_diff_by_bp(int data_count, int neuron_count, int in_da
 
 	cudaMemcpy(o_weights_diff, k_weights_diff, neuron_count * in_data_dim * sizeof(float), cudaMemcpyDeviceToHost);
 
+	cudaFree(k_delta_mat);
+	cudaFree(k_in_data_mat);
+	cudaFree(k_weights);
+	cudaFree(k_weights_diff);
+
 #ifdef CHECK_RESULT
 	// validate
 	// weights[0] (=weights[neuron=0][dim=0]) == prev_weights[0] - learning_rate / data_count * sum(delta[neuron=0] * in[dim=0]) for sample

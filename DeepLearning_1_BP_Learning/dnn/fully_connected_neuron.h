@@ -44,6 +44,9 @@ public:
 	void print_weights();
 
 private:
+	static float adjust_weight(float weight);
+
+private:
 	std::vector<float> weights_;
 	std::vector<float>  latest_activ_deriv_;
 	std::shared_ptr<ActivationAbst> activator_;

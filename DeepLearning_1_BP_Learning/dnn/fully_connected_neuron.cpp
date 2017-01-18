@@ -63,7 +63,7 @@ void FullConnectedNeuron::update_weights(const std::vector<std::vector<float> > 
 			error_sum += in_from_prev_layer[data_i][i] * delta[data_i];
 		}
 
-		weights[i] -= learning_rate * error_sum / in_from_prev_layer.size();
+		weights[i] = adjust_weight(weights[i] - learning_rate * error_sum / in_from_prev_layer.size());
 	}
 }
 
@@ -72,7 +72,7 @@ void FullConnectedNeuron::update_weights(const float *minus_diff)
 {
 	for (size_t i = 0; i < weights_.size(); i++)
 	{
-		weights_[i] -= minus_diff[i];
+		weights_[i] = adjust_weight(weights_[i] - minus_diff[i]);
 	}
 }
 
@@ -80,10 +80,18 @@ void FullConnectedNeuron::set_weights_directly(const float *weights)
 {
 	for (size_t i = 0; i < weights_.size(); i++)
 	{
-		weights_[i] = weights[i];
+		weights_[i] = adjust_weight(weights[i]);
 	}
 }
 
+float FullConnectedNeuron::adjust_weight(float weight)
+{
+	if (fabs(weight) > 10)
+	{
+		return 10 * (weight > 0 ? 1 : -1);
+	}
+	return weight;
+}
 
 void FullConnectedNeuron::print_weights()
 {
