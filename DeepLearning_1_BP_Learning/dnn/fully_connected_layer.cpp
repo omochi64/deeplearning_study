@@ -14,7 +14,7 @@ FullConnectedLayer::FullConnectedLayer(unsigned int neuron_count, unsigned int p
 	: NetworkLayer()
 	, add_bias_term_(add_bias_term)
 	, prev_layer_output_count_(prev_layer_output_count)
-	, use_gpu_for_weight_update_(false)
+	, use_gpu_for_weight_update_(true)
 {
 	neurons_.clear();
 	neurons_.reserve(neuron_count);

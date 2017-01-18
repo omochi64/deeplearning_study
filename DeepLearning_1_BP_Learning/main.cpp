@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 	
 
 	// input - 5(+1) - 4(+1) - labels - softmax
-	auto activ = std::make_shared<IdentityActivation>();
+	auto activ = std::make_shared<ReLUActivation>();
 
 	std::shared_ptr<FullConnectedLayer> first_layer;
 	first_layer = std::make_shared<FullConnectedLayer>(10, (unsigned int)(dataset[0].data.size()+1), activ, false);
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
 			SimpleTimer timer_bp;
 
 			// backprop
-			softmax->update_bp_from_output_layer(loss_delta, 0.01);
+			softmax->update_bp_from_output_layer(loss_delta, 0.5);
 
 			time_for_bp += timer_bp.past_seconds();
 
