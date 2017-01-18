@@ -16,9 +16,15 @@
     <Filter Include="ソース ファイル\DNN">
       <UniqueIdentifier>{eb51140d-16f1-445f-a7a0-0e079cc9e67f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\DNN\kernel">
+      <UniqueIdentifier>{6489fa79-9993-4ce5-a25f-a6c2cbbca7a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="kernel.cu" />
+    <CudaCompile Include="dnn\kernel\fully_connected.cu">
+      <Filter>ソース ファイル\DNN\kernel</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data.h">
@@ -53,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="dnn\softmax_layer.h">
       <Filter>ソース ファイル\DNN</Filter>
+    </ClInclude>
+    <ClInclude Include="dnn\kernel\fully_connected.cuh">
+      <Filter>ソース ファイル\DNN\kernel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,12 +15,12 @@ public:
 
 	}
 
-	virtual void activation(const std::vector<std::vector<double> > &in, std::vector<std::vector<double> > &o_out, bool use_result_to_bp = true) = 0;
+	virtual void activation(const std::vector<std::vector<float> > &in, std::vector<std::vector<float> > &o_out, bool use_result_to_bp = true) = 0;
 	virtual size_t get_neuron_count() const = 0;
 
-	void activation_chain(const std::vector<std::vector<double> > &in, std::vector<std::vector<double> > &o_lastOut)
+	void activation_chain(const std::vector<std::vector<float> > &in, std::vector<std::vector<float> > &o_lastOut)
 	{
-		std::vector<std::vector<double> > my_result;
+		std::vector<std::vector<float> > my_result;
 
 		activation(in, my_result);
 		if (next_)
@@ -47,7 +47,7 @@ public:
 
 	}
 
-	void update_bp_from_output_layer(const std::vector<std::vector<double> > &output_layer_loss, double learning_rate)
+	void update_bp_from_output_layer(const std::vector<std::vector<float> > &output_layer_loss, float learning_rate)
 	{
 		// output layer は重み更新しないので、prevにパス
 		if (prev_)
@@ -56,14 +56,14 @@ public:
 		}
 	}
 
-	void update_weights_by_bp_chain(const std::vector<std::vector<double> > &next_layer_losses, double learning_rate)
+	void update_weights_by_bp_chain(const std::vector<std::vector<float> > &next_layer_losses, float learning_rate)
 	{
-		std::vector<std::vector<double> > cur_loss = next_layer_losses;
+		std::vector<std::vector<float> > cur_loss = next_layer_losses;
 		NetworkLayer *cur = this;
 
 		while (cur != nullptr)
 		{
-			std::vector<std::vector<double> > this_loss;
+			std::vector<std::vector<float> > this_loss;
 			cur->update_weights_by_bp(cur_loss, learning_rate, this_loss);
 
 			cur = cur->prev_;
@@ -72,7 +72,7 @@ public:
 	}
 
 protected:
-	virtual void update_weights_by_bp(const std::vector<std::vector<double> > &next_layer_losses, double learning_rate, std::vector<std::vector<double> > &this_layer_loss_to_bp) = 0;
+	virtual void update_weights_by_bp(const std::vector<std::vector<float> > &next_layer_losses, float learning_rate, std::vector<std::vector<float> > &this_layer_loss_to_bp) = 0;
 
 protected:
 	std::shared_ptr<NetworkLayer> next_;

@@ -14,9 +14,9 @@ public:
 	{
 	}
 
-	double past_seconds() const
+	float past_seconds() const
 	{
-		return (double)(clock() - begin_) / CLOCKS_PER_SEC;
+		return (float)(clock() - begin_) / CLOCKS_PER_SEC;
 	}
 
 private:
@@ -30,7 +30,7 @@ class SimpleTimer
 public:
 	SimpleTimer() {}
 
-	double past_seconds() const {
+	float past_seconds() const {
 		return 0;
 	}
 };

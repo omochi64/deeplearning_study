@@ -4,7 +4,7 @@
 class PGM
 {
 public:
-	static inline double clamp(double x) {
+	static inline float clamp(float x) {
 		if (x < 0.0)
 			return 0.0;
 		if (x > 1.0)
@@ -12,11 +12,11 @@ public:
 		return x;
 	}
 
-	static inline int to_int(double x) {
+	static inline int to_int(float x) {
 		return int(x * 255 + 0.5);
 	}
 
-	static void save_pgm_file(const std::string &filename, const double *gray_image, const int width, const int height) {
+	static void save_pgm_file(const std::string &filename, const float *gray_image, const int width, const int height) {
 		FILE *f;
 		fopen_s(&f, filename.c_str(), "wb");
 		fprintf(f, "P2\n%d %d\n%d\n", width, height, 255);

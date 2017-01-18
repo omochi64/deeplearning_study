@@ -6,18 +6,18 @@
 class ActivationAbst
 {
 public:
-	virtual double activation(double in)  const = 0;
-	virtual double calc_deriv(double in) const = 0;
+	virtual float activation(float in)  const = 0;
+	virtual float calc_deriv(float in) const = 0;
 };
 // sigmoid
 class SigmoidActivation : public ActivationAbst
 {
 public:
-	virtual double activation(double in) const override
+	virtual float activation(float in) const override
 	{
 		return 1 / (1 + std::exp(-in));
 	}
-	virtual double calc_deriv(double in) const override
+	virtual float calc_deriv(float in) const override
 	{
 		auto act = activation(in);
 		return act * (1 - act);
@@ -27,11 +27,11 @@ public:
 class ReLUActivation : public ActivationAbst
 {
 public:
-	virtual double activation(double in) const override
+	virtual float activation(float in) const override
 	{
 		return in >= 0 ? in : 0;
 	}
-	virtual double calc_deriv(double in) const override
+	virtual float calc_deriv(float in) const override
 	{
 		return in > 0 ? 1 : 0;
 	}
@@ -40,11 +40,11 @@ public:
 class IdentityActivation : public ActivationAbst
 {
 public:
-	virtual double activation(double in) const override
+	virtual float activation(float in) const override
 	{
 		return in;
 	}
-	virtual double calc_deriv(double in) const override
+	virtual float calc_deriv(float in) const override
 	{
 		return 1;
 	}

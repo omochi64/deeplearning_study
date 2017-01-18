@@ -20,7 +20,7 @@ FullConnectedNeuron::FullConnectedNeuron(unsigned int input_count, std::shared_p
 	}
 }
 
-void FullConnectedNeuron::activation(const std::vector<std::vector<double> > &in, std::vector<double> &o_out, bool save_activ_deriv)
+void FullConnectedNeuron::activation(const std::vector<std::vector<float> > &in, std::vector<float> &o_out, bool save_activ_deriv)
 {
 	assert(in[0].size() == weights_.size());
 	o_out.resize(in.size());
@@ -29,7 +29,7 @@ void FullConnectedNeuron::activation(const std::vector<std::vector<double> > &in
 
 	for (size_t data_i = 0; data_i < in.size(); data_i++)
 	{
-		double sum = 0;
+		float sum = 0;
 		for (size_t i = 0; i < weights_.size(); i++)
 		{
 			sum += weights_[i] * in[data_i][i];
@@ -47,16 +47,16 @@ void FullConnectedNeuron::activation(const std::vector<std::vector<double> > &in
 
 
 // 与えられたdeltaに基づいて更新
-void FullConnectedNeuron::update_weights(const std::vector<std::vector<double> > &in_from_prev_layer, const std::vector<double> &delta, double learning_rate)
+void FullConnectedNeuron::update_weights(const std::vector<std::vector<float> > &in_from_prev_layer, const std::vector<float> &delta, float learning_rate)
 {
 	assert(in_from_prev_layer[0].size() == weights_.size());
 
 	size_t size = weights_.size();
-	double *weights = weights_.data();
+	float *weights = weights_.data();
 
 	for (size_t i = 0; i < size; i++)
 	{
-		double error_sum = 0;
+		float error_sum = 0;
 
 		for (size_t data_i = 0; data_i < in_from_prev_layer.size(); data_i++)
 		{
@@ -66,6 +66,24 @@ void FullConnectedNeuron::update_weights(const std::vector<std::vector<double> >
 		weights[i] -= learning_rate * error_sum / in_from_prev_layer.size();
 	}
 }
+
+// 与えられたdiffに基づいて更新
+void FullConnectedNeuron::update_weights(const float *minus_diff)
+{
+	for (size_t i = 0; i < weights_.size(); i++)
+	{
+		weights_[i] -= minus_diff[i];
+	}
+}
+
+void FullConnectedNeuron::set_weights_directly(const float *weights)
+{
+	for (size_t i = 0; i < weights_.size(); i++)
+	{
+		weights_[i] = weights[i];
+	}
+}
+
 
 void FullConnectedNeuron::print_weights()
 {

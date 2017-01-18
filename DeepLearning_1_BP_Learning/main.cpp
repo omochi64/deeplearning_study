@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
 {
 	std::string fname = "iris_data_dummy.csv";
 
+	srand(0);
+
 	//std::vector<Instance> iris_dataset;
 	//load_iris_dataset(fname, iris_dataset, true);
 
@@ -58,7 +60,7 @@ int main(int argc, char *argv[])
 	first_layer->set_next(softmax);
 
 	int batch_size = 100;
-	double bias_init = 0.1;
+	float bias_init = 0.1;
 
 	// update by bp
 	for (size_t bp = 0; bp < 1000; bp++)
@@ -67,17 +69,17 @@ int main(int argc, char *argv[])
 		
 		unsigned int correct_count = 0;
 
-		double time_for_forward = 0;
-		double time_for_bp = 0;
+		float time_for_forward = 0;
+		float time_for_bp = 0;
 
-		double time_for_calc_delta = 0;
-		double time_for_calc_loss = 0;
-		double time_for_update = 0;
+		float time_for_calc_delta = 0;
+		float time_for_calc_loss = 0;
+		float time_for_update = 0;
 
 		for (int i = 0; i < dataset.size();)
 		{
 			// feed forward
-			std::vector<std::vector<double> > input_array; input_array.reserve(batch_size);
+			std::vector<std::vector<float> > input_array; input_array.reserve(batch_size);
 			std::vector<unsigned int> label_array;
 			for (int batch_i = 0; batch_i < batch_size; batch_i++)
 			{
@@ -88,14 +90,14 @@ int main(int argc, char *argv[])
 				label_array.push_back(dataset[batch_i+i].cls);
 			}
 			
-			std::vector<std::vector<double> > output_array;
+			std::vector<std::vector<float> > output_array;
 
 			SimpleTimer timer_forward;
 
 			first_layer->activation_chain(input_array, output_array);
 
 			// get the predicted class
-			std::vector<std::vector<double> > loss_delta(output_array.size());
+			std::vector<std::vector<float> > loss_delta(output_array.size());
 			for (size_t data_i = 0; data_i < output_array.size(); data_i++)
 			{
 				int max_idx = SoftmaxLayer::calc_estimated_class_index(output_array[data_i]);
@@ -133,16 +135,16 @@ int main(int argc, char *argv[])
 
 		if (true)
 		{
-			double loss_total = 0;
+			float loss_total = 0;
 			int correct_total = 0;
 			std::cout << "calculating test loss..." << std::endl;
 			for (size_t i = 0; i < testset.size(); i++)
 			{
 				auto &data = testset[i];
-				std::vector<double> input(data.data);
+				std::vector<float> input(data.data);
 				input.push_back(bias_init);  // bias term
-				std::vector<std::vector<double> > input_array(1); input_array[0] = input;
-				std::vector<std::vector<double> > output_array;
+				std::vector<std::vector<float> > input_array(1); input_array[0] = input;
+				std::vector<std::vector<float> > output_array;
 
 				first_layer->activation_chain(input_array, output_array);
 				int max_idx = SoftmaxLayer::calc_estimated_class_index(output_array[0]);

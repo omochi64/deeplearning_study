@@ -156,6 +156,7 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <CudaCompile Include="dnn\kernel\fully_connected.cu" />
     <CudaCompile Include="kernel.cu" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,7 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     <ClInclude Include="dnn\activations.h" />
     <ClInclude Include="dnn\fully_connected_layer.h" />
     <ClInclude Include="dnn\fully_connected_neuron.h" />
+    <ClInclude Include="dnn\kernel\fully_connected.cuh" />
     <ClInclude Include="dnn\layer.h" />
     <ClInclude Include="dnn\softmax_layer.h" />
     <ClInclude Include="iris_loader.h" />

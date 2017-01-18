@@ -79,7 +79,7 @@ bool load_iris_dataset(std::string fname, std::vector<Instance> &load_data, bool
 
 	if (normalize_dim)
 	{
-		std::vector<double> sum, sq_sum;
+		std::vector<float> sum, sq_sum;
 		sum.resize(load_data[0].data.size());
 		sq_sum.resize(load_data[0].data.size());
 
@@ -94,7 +94,7 @@ bool load_iris_dataset(std::string fname, std::vector<Instance> &load_data, bool
 			}
 		}
 
-		std::vector<double> avg, stdev;
+		std::vector<float> avg, stdev;
 		for (size_t j = 0; j < sum.size(); j++)
 		{
 			avg.push_back(sum[j] / load_data.size());
